@@ -1,0 +1,34 @@
+<div class="elevator-simulator">
+  <h1>Elevator Simulator</h1>
+
+  <div class="elevator-container">
+    <div class="elevators">
+      <div *ngFor="let elevator of elevators" class="elevator-card">
+        <h3>Elevator {{elevator.id}}</h3>
+        <div class="elevator-info">
+          <p>Current Floor: {{elevator.currentFloor}}</p>
+          <p>Status: {{elevator.status}}</p>
+          <p *ngIf="elevator.targetFloor">Target Floor: {{elevator.targetFloor}}</p>
+        </div>
+        <div class="floor-buttons">
+          <button *ngFor="let floor of floors"
+                  (click)="selectFloor(elevator.id, floor)"
+                  [disabled]="floor === elevator.currentFloor"
+                  [class.current-floor]="floor === elevator.currentFloor">
+            {{floor}}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="floor-request-panel">
+      <h3>Call Elevator</h3>
+      <div class="floor-buttons">
+        <button *ngFor="let floor of floors"
+                (click)="requestElevator(floor)">
+          Floor {{floor}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
